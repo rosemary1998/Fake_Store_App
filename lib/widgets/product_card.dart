@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../Screens/product_view_page.dart';
 import '../models/product_model.dart';
 
 
@@ -11,20 +12,34 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: [
-          Image.network(product.imageUrl,
-          width: 300,
-            height: 300,
+    return GestureDetector(
+      onTap: () {
+        // Navigate to the product detail screen
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailScreen(product: product),
           ),
-          Text(product.name),
-          Text('\$${product.price.toStringAsFixed(2)}'),
-          IconButton(
-            icon: Icon(Icons.delete),
-            onPressed: onDelete,
-          ),
-        ],
+        );
+      },
+      child: Card(
+        child: Column(
+          children: [
+            Image.network(product.imageUrl,
+              height: 200,
+
+            ),
+            Text(
+              product.name,
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            Text('\$${product.price.toStringAsFixed(2)}'),
+            IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: onDelete,
+            ),
+          ],
+        ),
       ),
     );
   }

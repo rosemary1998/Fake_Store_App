@@ -27,18 +27,13 @@ class HomeScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final product = productProvider.products[index];
                     return Container(
-                      child: GestureDetector(
-                        onTap: () {
 
-                          Navigator.of(context)
-                              .pop(ProductViewPage); // Return the new product
-                        },
                         child: ProductCard(
                           product: product,
                           onDelete: () =>
                               productProvider.deleteProduct(product.id),
                         ),
-                      ),
+
                     );
                   },
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
